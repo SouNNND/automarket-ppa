@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">autoMarket</string>
+    <string name="logo_description">logo of the application</string>
+    <string name="button_buy">BUY</string>
+    <string name="button_sell">SELL</string>
+    <string name="button_login">LOGIN</string>
+    <string name="button_register">REGISTER</string>
+    <string name="edit_email">Email</string>
+    <string name="edit_password">Password</string>
+    <string name="edit_email_autofill">Enter your email</string>
+    <string name="edit_password_autofill">Enter your password</string>
 </resources>

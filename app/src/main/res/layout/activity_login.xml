@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:id="@+id/main_layout"
@@ -24,23 +24,42 @@
             android:contentDescription="@string/logo_description"
             app:srcCompat="@drawable/logo_automarket" />
 
+        <EditText
+            android:id="@+id/edit_email_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:ems="10"
+            android:hint="@string/edit_email"
+            android:inputType="textEmailAddress"
+            android:autofillHints="@string/edit_email_autofill" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword"
+            android:autofillHints="@string/edit_password_autofill" />
+
         <Button
-            android:id="@+id/button_buy"
+            android:id="@+id/button_login_login"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="130dp"
-            android:text="@string/button_buy"
+            android:layout_marginTop="10dp"
+            android:text="@string/button_login"
             app:backgroundTint="@color/primary_color" />
 
         <Button
-            android:id="@+id/button_sell"
+            android:id="@+id/button_register_login"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:onClick="launchLoginActivity"
-            android:text="@string/button_sell"
+            android:layout_marginTop="5dp"
+            android:text="@string/button_register"
             app:backgroundTint="@color/primary_color" />
 
     </LinearLayout>

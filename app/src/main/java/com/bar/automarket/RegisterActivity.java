@@ -8,17 +8,16 @@ import android.view.View;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         Objects.requireNonNull(getSupportActionBar()).hide(); // hide the title bar
     }
 
-    public void launchRegisterActivity(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
+    public void backToLoginActivity(View view) {
+        this.finish();
     }
 }

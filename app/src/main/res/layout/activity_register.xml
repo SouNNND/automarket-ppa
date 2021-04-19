@@ -37,7 +37,7 @@
             android:autofillHints="Enter username" />
 
         <EditText
-            android:id="@+id/edit_email_login"
+            android:id="@+id/edit_email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/edit_password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

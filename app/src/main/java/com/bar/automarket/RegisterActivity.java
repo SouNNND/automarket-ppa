@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
@@ -67,20 +68,27 @@ public class RegisterActivity extends AppCompatActivity {
                 mPassword.setError("Password length at least 6 characters");
                 mPassword.setFocusable(true);
             } else {
-                registerUser(email, password);
+                registerUser(username, email, password);
             }
         });
     }
 
-    private void registerUser(String email, String password) {
+    private void registerUser(String username, String email, String password) {
         progressDialog.show();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, dismiss dialog and start register activity
+                        // Sign in success
                         progressDialog.dismiss();
                         FirebaseUser user = mAuth.getCurrentUser();
+
+                        //Set user name
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(username).build();
+                        user.updateProfile(profileUpdates);
+
+                        //Validation
                         Toast.makeText(RegisterActivity.this, "Registered..\n"+user.getEmail(),
                                 Toast.LENGTH_SHORT).show();
                         backToLoginActivity();

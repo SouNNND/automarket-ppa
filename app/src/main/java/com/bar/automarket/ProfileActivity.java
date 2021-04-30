@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null) {
             //user is signed in
-            welcomeMessage.setText(getString(R.string.message_welcome) + user.getEmail());
+            welcomeMessage.setText(getString(R.string.message_welcome) + user.getDisplayName());
         } else {
             //user is not signed in
             startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
@@ -55,7 +55,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     /* handle menu item clicks */
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

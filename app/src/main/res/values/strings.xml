@@ -9,4 +9,9 @@
     <string name="edit_password">Password</string>
     <string name="edit_email_autofill">Enter your email</string>
     <string name="edit_password_autofill">Enter your password</string>
+    <string name="edit_username">Username</string>
+    <string name="item_logout">Logout</string>
+    <string name="message_welcome">Hello \</string>
+    <string name="button_your_ads">Your ADS</string>
+    <string name="button_create_ad">create ad</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859883534322",
+    "project_id": "automarket-ppa",
+    "storage_bucket": "automarket-ppa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859883534322:android:b6975bc17037b16645dd6b",
+        "android_client_info": {
+          "package_name": "com.bar.automarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859883534322-4tvtmka7jou93efibf5g5f2jh9d675b4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoaqkd6LzMrqL6CrzYrHo5_jQinueZo5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859883534322-4tvtmka7jou93efibf5g5f2jh9d675b4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

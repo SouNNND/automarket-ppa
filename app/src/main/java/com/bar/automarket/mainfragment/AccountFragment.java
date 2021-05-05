@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +20,31 @@ import com.bar.automarket.LoginActivity;
 import com.bar.automarket.MainActivity;
 import com.bar.automarket.ProfileActivity;
 import com.bar.automarket.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
+
+import java.util.Objects;
+import java.util.concurrent.Executor;
 
 public class AccountFragment extends Fragment {
 
-    FirebaseAuth firebaseAuth;
+    private static final String TAG = "TAG";
+    FirebaseAuth mAuth;
+    FirebaseFirestore mStore;
+    String userId;
+
     Button logout;
-    TextView welcomeMessage;
+    TextView welcomeMessage, email, phone;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,18 +57,45 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        firebaseAuth = FirebaseAuth.getInstance();
-        logout = getView().findViewById(R.id.button_logout);
-        welcomeMessage = getView().findViewById(R.id.profile_message);
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
+        userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-        welcomeMessage.setText(getString(R.string.message_welcome) + firebaseAuth.getCurrentUser().getDisplayName());
+        //Ui elements
+        logout = requireView().findViewById(R.id.button_logout);
+        welcomeMessage = requireView().findViewById(R.id.profile_message);
+        email = requireView().findViewById(R.id.text_profile_email);
+        phone = requireView().findViewById(R.id.text_profile_phone);
 
+        //Get data from DB
+        getDataAndUpdateViews();
+
+        //Buttons listeners
         logout.setOnClickListener(v -> {
-            firebaseAuth.signOut();
+            mAuth.signOut();
             ((MainActivity)requireActivity()).displayAccount();
         });
     }
 
+    private void getDataAndUpdateViews() {
+        DocumentReference documentReference = mStore.collection("users").document(userId);
+        documentReference.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                assert document != null;
+                if (document.exists()) {
+                    welcomeMessage.append(document.getString("username"));
+                    phone.append(document.getString("phone"));
+                    email.append(document.getString("email"));
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+            }
+        });
+    }
 
 
 }

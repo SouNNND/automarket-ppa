@@ -11,8 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bar.automarket.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class FeedFragment extends Fragment {
+
+    FirebaseAuth mAuth;
+    FirebaseFirestore mStore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,5 +31,10 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
+        //userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+
     }
 }

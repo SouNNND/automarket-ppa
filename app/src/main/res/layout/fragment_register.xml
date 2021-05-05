@@ -31,7 +31,7 @@
             android:id="@+id/edit_username_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="40dp"
             android:autofillHints="Enter username"
             android:ems="10"
             android:hint="@string/edit_username"
@@ -46,6 +46,16 @@
             android:ems="10"
             android:hint="@string/edit_email"
             android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edit_phone_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/edit_phone"
+            android:importantForAutofill="no"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/edit_password_register"
@@ -66,14 +76,15 @@
             android:layout_marginTop="5dp"
             android:text="@string/button_register" />
 
-        <Button
+        <TextView
             android:id="@+id/button_login_register"
-            style="@style/Widget.AppCompat.Button"
-            app:backgroundTint="@color/primary_color"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/button_login" />
+            android:text="@string/button_have_account"
+            android:textAlignment="center"
+            android:textColor="@color/primary_color"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

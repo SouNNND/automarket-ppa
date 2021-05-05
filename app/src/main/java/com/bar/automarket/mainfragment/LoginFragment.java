@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bar.automarket.LoginActivity;
@@ -30,7 +31,8 @@ import java.util.concurrent.Executor;
 public class LoginFragment extends Fragment {
 
     EditText mEmail, mPassword;
-    Button mLoginBtn, mRegisterBtn;
+    Button mLoginBtn;
+    TextView mRegisterBtn;
     ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
@@ -48,10 +50,10 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //init
-        mEmail = getView().findViewById(R.id.edit_email_login);
-        mPassword = getView().findViewById(R.id.edit_password_login);
-        mLoginBtn = getView().findViewById(R.id.button_login_login);
-        mRegisterBtn = getView().findViewById(R.id.button_register_login);
+        mEmail = requireView().findViewById(R.id.edit_email_login);
+        mPassword = requireView().findViewById(R.id.edit_password_login);
+        mLoginBtn = requireView().findViewById(R.id.button_login_login);
+        mRegisterBtn = requireView().findViewById(R.id.button_register_login);
 
         //firebase
         mAuth = FirebaseAuth.getInstance();

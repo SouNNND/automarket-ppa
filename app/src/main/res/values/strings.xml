@@ -13,5 +13,20 @@
     <string name="item_logout">Logout</string>
     <string name="message_welcome">Hello \</string>
     <string name="button_your_ads">Your ADS</string>
-    <string name="button_create_ad">create ad</string>
+    <string name="button_logout">Logout</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_make">Marca</string>
+    <string name="add_model">Model</string>
+    <string name="add_fuel">Combustibil</string>
+    <string name="add_displacement">Capacitate motor</string>
+    <string name="add_power">Putere motor</string>
+    <string name="add_mileage">Km</string>
+    <string name="add_year">An</string>
+    <string name="add_post">Post</string>
+    <string name="add_image">image</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_account">Account</string>
 </resources>

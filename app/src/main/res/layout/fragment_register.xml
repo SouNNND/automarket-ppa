@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".mainfragment.RegisterFragment">
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/logo"
+            app:srcCompat="@drawable/logo_automarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/logo_description" />
+
+        <EditText
+            android:id="@+id/edit_username_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:autofillHints="Enter username"
+            android:ems="10"
+            android:hint="@string/edit_username"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edit_email_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:autofillHints="@string/edit_email_autofill"
+            android:ems="10"
+            android:hint="@string/edit_email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edit_password_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:autofillHints="@string/edit_password_autofill"
+            android:ems="10"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/button_register_register"
+            style="@style/Widget.AppCompat.Button"
+            app:backgroundTint="@color/primary_color"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/button_register" />
+
+        <Button
+            android:id="@+id/button_login_register"
+            style="@style/Widget.AppCompat.Button"
+            app:backgroundTint="@color/primary_color"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/button_login" />
+
+    </LinearLayout>
+
+</FrameLayout>

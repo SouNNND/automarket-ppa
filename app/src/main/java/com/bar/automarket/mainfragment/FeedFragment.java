@@ -19,7 +19,9 @@ import com.bar.automarket.data.MyAdapter;
 import com.bar.automarket.data.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -29,12 +31,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class FeedFragment extends Fragment {
 
     private static final String TAG = "GET_DATA";
+    private static final String REALTIME = "REALTIME_DATA";
     FirebaseAuth mAuth;
     FirebaseFirestore mStore;
     FirebaseStorage storage;
@@ -43,7 +47,7 @@ public class FeedFragment extends Fragment {
 
     RecyclerView recyclerView;
     String make[] = {"Loading.."}, model[] = {"Loading.."};
-    int images[];
+    String images[] = {"Car"};
 
     MyAdapter myAdapter;
 
@@ -61,7 +65,7 @@ public class FeedFragment extends Fragment {
         //Firebase
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
-        getData();
+        //getData();
 
         //Storage for images
         storage = FirebaseStorage.getInstance();
@@ -74,24 +78,35 @@ public class FeedFragment extends Fragment {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity() ));
 
+        //Listen if data change -> refresh list
+        mStore.collection("posts")
+                .addSnapshotListener((value, e) -> {
+                    if (e != null) {
+                        Log.w(REALTIME, "Listen failed.", e);
+                        return;
+                    }
+
+                    for (QueryDocumentSnapshot document : value) {
+                        Post post = document.toObject(Post.class);
+                        posts.put(document.getId(), post);
+                    }
+
+                    splitData();
+                });
+
+
     }
 
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden) {
-            splitData();
+        //if(!hidden)
+            //splitData();
 
-            if(posts.isEmpty())
-                Log.d(TAG, "EMPTY");
-            else
-                Log.d(TAG, "HAS VALUES");
-            //Log.d(TAG, String.join(" ", make));
-        }
     }
 
-    public void getData() {
+    /*public void getData() {
         mStore.collection("posts")
                 .get()
                 .addOnCompleteListener(task -> {
@@ -105,17 +120,22 @@ public class FeedFragment extends Fragment {
                         Log.d((String) TAG, "Error getting documents: ", task.getException());
                     }
                 });
-    }
+
+    }*/
 
     private void splitData() {
         ArrayList<String> makeAL = new ArrayList<>();
         ArrayList<String> modelAL = new ArrayList<>();
+        ArrayList<String> imgID = new ArrayList<>();
         for(Map.Entry<String, Post> p : posts.entrySet()) {
             makeAL.add(p.getValue().getMake());
             modelAL.add(p.getValue().getModel());
+            imgID.add(p.getValue().getImgId());
         }
         make = makeAL.toArray(new String[0]);
         model = modelAL.toArray(new String[0]);
+        images = imgID.toArray(new String[0]);
+        Log.d(TAG, images.toString());
 
         //Update recyclerView
         myAdapter = new MyAdapter(requireActivity(), make, model, images);

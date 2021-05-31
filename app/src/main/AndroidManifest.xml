@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoMarket">
+        <activity
+            android:name=".AdInfoActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity android:name=".FeedActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity" />

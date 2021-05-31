@@ -34,11 +34,11 @@
             android:text="@string/button_your_ads" />
 
         <Button
-            android:id="@+id/button_create_ad"
+            android:id="@+id/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="@string/button_create_ad" />
+            android:text="@string/button_logout" />
 
     </LinearLayout>
 

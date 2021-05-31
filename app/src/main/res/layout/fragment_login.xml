@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".mainfragment.LoginFragment">
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/logo_description"
+            app:srcCompat="@drawable/logo_automarket" />
+
+        <EditText
+            android:id="@+id/edit_email_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:autofillHints="@string/edit_email_autofill"
+            android:ems="10"
+            android:hint="@string/edit_email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edit_password_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:autofillHints="@string/edit_password_autofill"
+            android:ems="10"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/button_login_login"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/button_login"
+            app:backgroundTint="@color/primary_color" />
+
+        <TextView
+            android:id="@+id/button_register_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/login_have_account"
+            android:textAlignment="center"
+            android:textColor="@color/primary_color"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

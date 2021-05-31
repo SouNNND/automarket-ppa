@@ -10,10 +10,11 @@ public class Post {
     private String mileage;
     private String year;
     private String userId;
+    private String imgId;
 
-    public Post() {}
+    public Post() { }
 
-    public Post(String make, String model, String fuel, String displacement, String power, String mileage, String year, String userId) {
+    public Post(String make, String model, String fuel, String displacement, String power, String mileage, String year, String userId, String imgId) {
         this.make = make;
         this.model = model;
         this.fuel = fuel;
@@ -22,6 +23,7 @@ public class Post {
         this.mileage = mileage;
         this.year = year;
         this.userId = userId;
+        this.imgId = imgId;
     }
 
     public String getMake() {
@@ -55,4 +57,6 @@ public class Post {
     public String getUserId() {
         return userId;
     }
+
+    public String getImgId() { return imgId; }
 }

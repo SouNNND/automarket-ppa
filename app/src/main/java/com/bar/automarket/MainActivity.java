@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             ft.add(R.id.main_fragment, f);
         }
-        if (accountFragment.isAdded() && f != accountFragment) { ft.hide(accountFragment); }
+        if (accountFragment.isAdded() && f != accountFragment) { ft.hide(accountFragment);}
         if (addFragment.isAdded() && f != addFragment) { ft.hide(addFragment); }
         if (feedFragment.isAdded() && f != feedFragment) { ft.hide(feedFragment); }
         if (searchFragment.isAdded() && f != searchFragment) { ft.hide(searchFragment); }

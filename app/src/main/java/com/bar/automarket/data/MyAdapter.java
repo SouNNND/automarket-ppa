@@ -57,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull @NotNull MyAdapter.MyViewHolder holder, int position) {
         holder.make.setText(mPosts.get(position).getMake());
         holder.model.setText(mPosts.get(position).getModel());
-
+        holder.price.setText("€" + mPosts.get(position).getPrice());
 
         //Download images from Storage
         StorageReference img = storageReference.child("images/" + mPosts.get(position).getImgId());
@@ -89,7 +89,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView make, model;
+        TextView make, model, price;
         ImageView imageView;
         OnAdListener mOnAdListener;
 
@@ -97,6 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             make = itemView.findViewById(R.id.ad_make);
             model = itemView.findViewById(R.id.ad_model);
+            price = itemView.findViewById(R.id.ad_price);
             imageView = itemView.findViewById(R.id.ad_image_view);
             mOnAdListener = onAdListener;
 

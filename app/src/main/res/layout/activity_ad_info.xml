@@ -169,6 +169,28 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Price:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_price"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="18sp" />
+        </LinearLayout>
+
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
@@ -219,13 +241,6 @@
                 android:text="TextView"
                 android:textSize="18sp" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/info_call"
-            style="@style/FirebaseUI.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CALL" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

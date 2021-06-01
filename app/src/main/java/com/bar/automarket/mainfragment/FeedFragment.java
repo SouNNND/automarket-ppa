@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.bar.automarket.AdInfoActivity;
 import com.bar.automarket.R;
@@ -52,6 +53,7 @@ public class FeedFragment extends Fragment implements MyAdapter.OnAdListener {
 
     //ui components
     protected RecyclerView recyclerView;
+    Toolbar myToolbar;
 
     //vars
     protected MyAdapter myAdapter;
@@ -94,7 +96,7 @@ public class FeedFragment extends Fragment implements MyAdapter.OnAdListener {
                         Log.w(REALTIME, "Listen failed.", e);
                         return;
                     }
-
+                    posts.clear();
                     for (QueryDocumentSnapshot document : value) {
                         Post post = document.toObject(Post.class);
                         posts.put(document.getId(), post);
@@ -105,6 +107,7 @@ public class FeedFragment extends Fragment implements MyAdapter.OnAdListener {
     }
 
     protected void splitData() {
+        mPosts.clear();
         for(Map.Entry<String, Post> p : posts.entrySet()) {
             mPosts.add(p.getValue());
         }
@@ -126,6 +129,7 @@ public class FeedFragment extends Fragment implements MyAdapter.OnAdListener {
         intent.putExtra("displacement", mPosts.get(position).getDisplacement());
         intent.putExtra("power", mPosts.get(position).getPower());
         intent.putExtra("userId", mPosts.get(position).getUserId());
+        intent.putExtra("price", mPosts.get(position).getPrice());
 
         Log.d(TAG2, mPosts.get(position).getModel() + ": " + mPosts.get(position).getMake());
         startActivity(intent);

@@ -56,7 +56,7 @@ public class AddFragment extends Fragment {
     StorageReference storageReference;
 
     Button post, add;
-    EditText make, model, fuel, displacement, power, mileage, year;
+    EditText make, model, fuel, displacement, power, mileage, year, price;
     String userId;
     ImageView imageView;
 
@@ -89,11 +89,14 @@ public class AddFragment extends Fragment {
         year = requireActivity().findViewById(R.id.editText_add_an);
         add = requireActivity().findViewById(R.id.button_add_image);
         imageView = requireView().findViewById(R.id.post_image_view);
+        price = requireView().findViewById(R.id.editText_add_price);
 
         post.setOnClickListener(v -> {
-            String imageID = UUID.randomUUID().toString();
-            postAd(imageID);
-            uploadImage(imageID);
+            if(checkFields()) {
+                String imageID = UUID.randomUUID().toString();
+                postAd(imageID);
+                uploadImage(imageID);
+            }
         });
 
         add.setOnClickListener(view1 -> {
@@ -102,11 +105,51 @@ public class AddFragment extends Fragment {
 
     }
 
+    private boolean checkFields() {
+        String sMake = make.getText().toString().trim();
+        String sModel = model.getText().toString().trim();
+        String sFuel = fuel.getText().toString().trim();
+        String sDisplacement = displacement.getText().toString().trim();
+        String sMileage = mileage.getText().toString().trim();
+        String sYear = year.getText().toString().trim();
+        String sPower = power.getText().toString().trim();
+
+        if(sMake.isEmpty()) {
+            setFieldError(make);
+            return false;
+        } else if(sModel.isEmpty()) {
+            setFieldError(model);
+            return false;
+        } else if(sFuel.isEmpty()) {
+            setFieldError(fuel);
+            return false;
+        } else if(sDisplacement.isEmpty()) {
+            setFieldError(displacement);
+            return false;
+        } else if(sPower.isEmpty()) {
+            setFieldError(power);
+            return false;
+        } else if(sMileage.isEmpty()) {
+            setFieldError(mileage);
+            return false;
+        } else if(sYear.isEmpty()) {
+            setFieldError(year);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void setFieldError(EditText view) {
+        view.setError("Field required.");
+        view.setFocusable(true);
+    }
+
     private void postAd(String imageID) {
         Post add = new Post(make.getText().toString().trim(), model.getText().toString().trim(),
                 fuel.getText().toString().trim(), displacement.getText().toString().trim(),
                 power.getText().toString().trim(), mileage.getText().toString().trim(),
-                year.getText().toString().trim(), userId, imageID);
+                year.getText().toString().trim(), userId, imageID, price.getText().toString());
         mStore.collection("posts")
                 .add(add)
                 .addOnSuccessListener(documentReference -> Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId()))
@@ -241,6 +284,7 @@ public class AddFragment extends Fragment {
         power.setText("");
         mileage.setText("");
         year.setText("");
+        price.setText("");
         imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_directions_car_24));
     }
 }

@@ -32,7 +32,7 @@ public class AdInfoActivity extends AppCompatActivity {
     TextView modelTextView, makeTextView;
     TextView yearTextView, mileageTextView;
     TextView fuelTextView, displacementTextView, powerTextView;
-    TextView usernameTextView, phoneTextView;
+    TextView usernameTextView, phoneTextView, priceTextView;
     ImageView imageView;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -61,6 +61,7 @@ public class AdInfoActivity extends AppCompatActivity {
         powerTextView = findViewById(R.id.info_power);
         usernameTextView = findViewById(R.id.info_user_name);
         phoneTextView = findViewById(R.id.info_user_phone);
+        priceTextView = findViewById(R.id.info_price);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -71,6 +72,7 @@ public class AdInfoActivity extends AppCompatActivity {
             fuelTextView.setText(extras.getString("fuel"));
             displacementTextView.setText(extras.getString("displacement") + " cc");
             powerTextView.setText(extras.getString("power") + " HP");
+            priceTextView.setText(extras.getString("price") + "€");
 
             getAndShowUserData(extras.getString("userId"));
             showImage(extras.getString("imgId"));

@@ -1,14 +1,20 @@
 package com.bar.automarket;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bar.automarket.mainfragment.AccountFragment;
 import com.bar.automarket.mainfragment.AddFragment;
@@ -37,12 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide(); // hide the title bar
 
+        //bottom navigation
         BottomNavigationView bottomNavigation = findViewById(R.id.navigationView);
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -99,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void display(Fragment f) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
         if (f.isAdded()) {
             ft.show(f);
         } else {

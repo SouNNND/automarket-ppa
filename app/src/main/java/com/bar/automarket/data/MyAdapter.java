@@ -27,20 +27,21 @@ import com.google.firebase.storage.StorageReference;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private static final String TAG = "IMAGE";
-    String make[], model[];
-    String images[];
     Context context;
+    private ArrayList<Post> mPosts;
+    private OnAdListener mOnAdListener;
 
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
-    public MyAdapter(Context context, String make[], String model[], String images[]) {
+    public MyAdapter(Context context, ArrayList<Post> mPosts, OnAdListener onAdListener) {
         this.context = context;
-        this.make = make;
-        this.model = model;
-        this.images = images;
+        this.mPosts = mPosts;
+        this.mOnAdListener = onAdListener;
     }
 
     @NonNull
@@ -49,21 +50,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.feed_row, parent, false);
-        view.setOnClickListener(v -> {
-            Intent intent = new Intent(context, AdInfoActivity.class);
-            context.startActivity(intent);
-        });
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, mOnAdListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyAdapter.MyViewHolder holder, int position) {
-        holder.make.setText(make[position]);
-        holder.model.setText(model[position]);
+        holder.make.setText(mPosts.get(position).getMake());
+        holder.model.setText(mPosts.get(position).getModel());
 
 
         //Download images from Storage
-        StorageReference img = storageReference.child("images/" + images[position]);
+        StorageReference img = storageReference.child("images/" + mPosts.get(position).getImgId());
         //StorageReference img = storageReference.child("images/64ecfc48-e942-4817-810b-dec77a5f7c74.jpg");
         Log.d(TAG, img.toString());
 
@@ -87,20 +84,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return model.length;
+        return mPosts.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView make, model;
         ImageView imageView;
+        OnAdListener mOnAdListener;
 
-        public MyViewHolder(@NonNull @NotNull View itemView) {
+        public MyViewHolder(@NonNull @NotNull View itemView, OnAdListener onAdListener) {
             super(itemView);
             make = itemView.findViewById(R.id.ad_make);
             model = itemView.findViewById(R.id.ad_model);
             imageView = itemView.findViewById(R.id.ad_image_view);
+            mOnAdListener = onAdListener;
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            mOnAdListener.onAdClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnAdListener {
+        void onAdClick(int position);
     }
 }

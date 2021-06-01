@@ -43,7 +43,7 @@ public class AccountFragment extends Fragment {
     FirebaseFirestore mStore;
     String userId;
 
-    Button logout;
+    Button logout, myAds;
     TextView welcomeMessage, email, phone;
 
     @Override
@@ -64,6 +64,7 @@ public class AccountFragment extends Fragment {
 
         //Ui elements
         logout = requireView().findViewById(R.id.button_logout);
+        myAds = requireView().findViewById(R.id.button_ads);
         welcomeMessage = requireView().findViewById(R.id.profile_message);
         email = requireView().findViewById(R.id.text_profile_email);
         phone = requireView().findViewById(R.id.text_profile_phone);
@@ -75,6 +76,11 @@ public class AccountFragment extends Fragment {
         logout.setOnClickListener(v -> {
             mAuth.signOut();
             ((MainActivity)requireActivity()).displayAccount();
+            ((MainActivity)requireActivity()).removeMyAdsFragment();
+        });
+
+        myAds.setOnClickListener(v -> {
+            ((MainActivity)requireActivity()).displayMyAds();
         });
     }
 

@@ -1,7 +1,6 @@
 package com.bar.automarket.mainfragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,16 +16,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bar.automarket.LoginActivity;
 import com.bar.automarket.MainActivity;
-import com.bar.automarket.ProfileActivity;
 import com.bar.automarket.R;
-import com.bar.automarket.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Objects;
-import java.util.concurrent.Executor;
 
 public class LoginFragment extends Fragment {
 

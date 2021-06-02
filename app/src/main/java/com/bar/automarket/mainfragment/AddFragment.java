@@ -113,6 +113,7 @@ public class AddFragment extends Fragment {
         String sMileage = mileage.getText().toString().trim();
         String sYear = year.getText().toString().trim();
         String sPower = power.getText().toString().trim();
+        String sPrice = price.getText().toString().trim();
 
         if(sMake.isEmpty()) {
             setFieldError(make);
@@ -134,6 +135,9 @@ public class AddFragment extends Fragment {
             return false;
         } else if(sYear.isEmpty()) {
             setFieldError(year);
+            return false;
+        } else if(sPrice.isEmpty()) {
+            setFieldError(price);
             return false;
         }
 
